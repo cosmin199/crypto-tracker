@@ -22,9 +22,20 @@ function App() {
     setSearch(e.target.value)
   }
 
-  const filteredCoins = crypto.filter((crypto) =>
-    crypto.name.toLowerCase().includes(search.toLocaleLowerCase())
-  )
+  // const filteredCoins = crypto.filter((crypto) =>
+  //   crypto.name.toLowerCase().includes(search.toLocaleLowerCase())
+  // )
+
+  const filteredCoins = crypto.filter((crypto) => {
+    if (search === "") {
+      return crypto
+    } else if (
+      crypto.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
+      crypto.symbol.toLowerCase().includes(search.toLocaleLowerCase())
+    ) {
+      return crypto
+    }
+  })
 
   return (
     <div className="coin-app">
